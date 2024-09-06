@@ -13,8 +13,6 @@ MAP_WIDTH, MAP_HEIGHT = 30, 30
 MOVES = {'w': (-1, 0), 'd': (0, 1), 's': (1, 0), 'a': (0, -1)}
 
 field = Map(MAP_WIDTH, MAP_HEIGHT)
-field.print_map()
-
 helicopter = Helicopter(MAP_WIDTH, MAP_HEIGHT)
 
 
@@ -36,7 +34,7 @@ while True:
     os.system('clear')
     print("TICK", tick)
     helicopter.print_stats()
-    field.print_map()
+    field.print_map(helicopter)
     field.process_helicopter(helicopter)
     tick += 1
     time.sleep(TICK_SLEEP)

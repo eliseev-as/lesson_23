@@ -3,8 +3,8 @@ from utils import random_cell
 
 
 class Helicopter:
-    __tank = CELL_TYPES[6]
-    __score = CELL_TYPES[7]
+    __tank = CELL_TYPES[7]
+    __score = CELL_TYPES[8]
 
     def __init__(self, width, height):
         rc = random_cell(width, height)

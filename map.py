@@ -1,13 +1,14 @@
 from utils import random_bool, random_cell, next_random_cell, check_bounds
 
-CELL_TYPES = "🟩🌲🌊🏥🏪🔥💧🏆🔲"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥🚁💧🏆🔲"
 
 TREE_BONUS = 100
 UPGRADE_COST = 500
 
 
 class Map():
-    __border = CELL_TYPES[8]
+    __border = CELL_TYPES[9]
+    __helicopter = CELL_TYPES[6]
 
     def __init__(self, width, height):
         self.width = width
@@ -18,14 +19,17 @@ class Map():
         self.generate_river(20)
         self.generate_upgrade_shop()
 
-    def print_map(self):
+    def print_map(self, helicopter):
         print(self.__border * (self.width + 2))
 
-        for row in self.cells:
+        for ri in range(self.height):
             print(self.__border, end='')
 
-            for cell in row:
-                if 0 <= cell < len(CELL_TYPES):
+            for ci in range(self.width):
+                cell = self.cells[ri][ci]
+                if helicopter.x == ri and helicopter.y == ci:
+                    print(self.__helicopter, end='')
+                elif 0 <= cell < len(CELL_TYPES):
                     print(CELL_TYPES[cell], end='')
             print(self.__border)
         print(self.__border * (self.width + 2))
