@@ -76,14 +76,17 @@ class Map():
                 if cell == 5:
                     self.cells[ri][ci] = 0
 
-        for _ in range(5):
+        for _ in range(10):
             self.add_fire()
 
     def process_helicopter(self, helicopter):
         c = self.cells[helicopter.x][helicopter.y]
         if c == 2:
             helicopter.tank = helicopter.max_tank
-        elif c == 5 and helicopter.tank > 0:
+        if c == 5 and helicopter.tank > 0:
             helicopter.tank -= 1
+            helicopter.score += TREE_BONUS
             self.cells[helicopter.x][helicopter.y] = 1
-
+        if c == 4 and helicopter.score >= UPGRADE_COST:
+            helicopter.max_tank += 1
+            helicopter.score -= UPGRADE_COST
