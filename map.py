@@ -1,10 +1,10 @@
 from utils import random_bool, random_cell, next_random_cell, check_bounds
 
-CELL_TYPES = "🟩🌲🌊🏥🏪🔥🔲"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥💧🏆🔲"
 
 
 class Map():
-    __border = CELL_TYPES[6]
+    __border = CELL_TYPES[8]
 
     def __init__(self, width, height):
         self.width = width
