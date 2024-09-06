@@ -2,6 +2,9 @@ from utils import random_bool, random_cell, next_random_cell, check_bounds
 
 CELL_TYPES = "🟩🌲🌊🏥🏪🔥💧🏆🔲"
 
+TREE_BONUS = 100
+UPGRADE_COST = 500
+
 
 class Map():
     __border = CELL_TYPES[8]
@@ -10,6 +13,10 @@ class Map():
         self.width = width
         self.height = height
         self.cells = [[0 for _ in range(width)] for _ in range(height)]
+        self.generate_forest(3, 10)
+        self.generate_river(20)
+        self.generate_river(20)
+        self.generate_upgrade_shop()
 
     def print_map(self):
         print(self.__border * (self.width + 2))
@@ -46,6 +53,11 @@ class Map():
                 self.cells[next_x][next_y] = 2
                 rx, ry = next_x, next_y
                 length -= 1
+
+    def generate_upgrade_shop(self):
+        c = random_cell(self.width, self.height)
+        cx, cy = c[0], c[1]
+        self.cells[cx][cy] = 4
 
     def add_fire(self):
         c = random_cell(self.width, self.height)

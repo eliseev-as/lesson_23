@@ -9,9 +9,6 @@ FIRE_UPDATE = 100
 MAP_WIDTH, MAP_HEIGHT = 30, 30
 
 field = Map(30, 30)
-field.generate_forest(3, 10)
-field.generate_river(20)
-field.generate_river(20)
 field.print_map()
 
 tick = 1
