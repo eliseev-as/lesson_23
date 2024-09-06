@@ -33,9 +33,9 @@ tick = 1
 while True:
     os.system('clear')
     print("TICK", tick)
+    field.process_helicopter(helicopter)
     helicopter.print_stats()
     field.print_map(helicopter)
-    field.process_helicopter(helicopter)
     tick += 1
     time.sleep(TICK_SLEEP)
     if tick % TREE_UPDATE == 0:

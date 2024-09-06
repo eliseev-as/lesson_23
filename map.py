@@ -1,6 +1,6 @@
 from utils import random_bool, random_cell, next_random_cell, check_bounds
 
-CELL_TYPES = "🟩🌲🌊🏥🏪🔥🚁💧🏆🔲"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥🚁🪣🏆🔲"
 
 TREE_BONUS = 100
 UPGRADE_COST = 500
@@ -80,5 +80,10 @@ class Map():
             self.add_fire()
 
     def process_helicopter(self, helicopter):
-        if self.cells[helicopter.x][helicopter.y] == 2:
+        c = self.cells[helicopter.x][helicopter.y]
+        if c == 2:
             helicopter.tank = helicopter.max_tank
+        elif c == 5 and helicopter.tank > 0:
+            helicopter.tank -= 1
+            self.cells[helicopter.x][helicopter.y] = 1
+
