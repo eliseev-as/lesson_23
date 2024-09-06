@@ -1,10 +1,10 @@
 from utils import random_bool, random_cell, next_random_cell, check_bounds
 
-CELL_TYPES = "🟩🌲🌊🏥🏪🔲"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥🔲"
 
 
 class Map():
-    __border = CELL_TYPES[5]
+    __border = CELL_TYPES[6]
 
     def __init__(self, width, height):
         self.width = width
@@ -29,6 +29,12 @@ class Map():
                 if random_bool(cutoff, max_value):
                     self.cells[ri][ci] = 1
 
+    def generate_tree(self):
+        c = random_cell(self.width, self.height)
+        cx, cy = c[0], c[1]
+        if self.cells[cx][cy] == 0:
+            self.cells[cx][cy] = 1
+
     def generate_river(self, length):
         rc = random_cell(self.width, self.height)
         rx, ry = rc[0], rc[1]
@@ -41,10 +47,18 @@ class Map():
                 rx, ry = next_x, next_y
                 length -= 1
 
+    def add_fire(self):
+        c = random_cell(self.width, self.height)
+        cx, cy = c[0], c[1]
+        if self.cells[cx][cy] == 1:
+            self.cells[cx][cy] = 5
 
-map = Map(30, 30)
-map.generate_forest(6, 10)
-map.generate_river(20)
-map.generate_river(50)
-map.generate_river(20)
-map.print_map()
+    def update_fires(self):
+        for ri in range(self.height):
+            for ci in range(self.width):
+                cell = self.cells[ri][ci]
+                if cell == 5:
+                    self.cells[ri][ci] = 0
+
+        for _ in range(5):
+            self.add_fire()
