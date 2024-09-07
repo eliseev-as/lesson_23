@@ -1,3 +1,5 @@
+import os
+
 from map import CELL_TYPES
 from utils import random_cell
 
@@ -17,7 +19,7 @@ class Helicopter:
         self.tank = 0
         self.max_tank = 1
         self.score = 0
-        self.lives = 2
+        self.lives = 20
 
     def move(self, dx, dy):
         nx, ny = dx + self.x, dy + self.y
@@ -28,3 +30,12 @@ class Helicopter:
         print(self.__tank, self.tank, '/', self.max_tank, sep='', end=' | ')
         print(self.__score, self.score, end=' | ')
         print(self.__lives, self.lives)
+
+    def game_over(self):
+        os.system("clear")
+        print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        print("X                                  X")
+        print("X   GAME OVER, YOU SCORE IS", self.score, "   X")
+        print("X                                  X")
+        print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+        exit(0)

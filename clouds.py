@@ -7,7 +7,7 @@ class Clouds:
         self.height = height
         self.cells = [[0 for _ in range(width)] for _ in range(height)]
 
-    def update(self, clouds=2, max_clouds=10, clouds_lightning=4, max_clouds_lightning=10):
+    def update(self, clouds=1, max_clouds=20, clouds_lightning=1, max_clouds_lightning=10):
         for ri in range(self.height):
             for ci in range(self.width):
                 if random_bool(clouds, max_clouds):

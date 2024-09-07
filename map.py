@@ -13,11 +13,12 @@ class Map():
     __cloud = CELL_TYPES[6]
     __cloud_lightning = CELL_TYPES[7]
 
-    def __init__(self, width, height):
+    def __init__(self, width, height, clouds):
         self.width = width
         self.height = height
+        self.clouds = clouds
         self.cells = [[0 for _ in range(width)] for _ in range(height)]
-        self.generate_forest(3, 10)
+        self.generate_forest(5, 10)
         self.generate_river(20)
         self.generate_river(20)
         self.generate_upgrade_shop()
@@ -97,6 +98,7 @@ class Map():
 
     def process_helicopter(self, helicopter):
         c = self.cells[helicopter.x][helicopter.y]
+        d = self.clouds.cells[helicopter.x][helicopter.y]
         if c == 2:
             helicopter.tank = helicopter.max_tank
         if c == 5 and helicopter.tank > 0:
@@ -107,5 +109,9 @@ class Map():
             helicopter.max_tank += 1
             helicopter.score -= UPGRADE_COST
         if c == 3 and helicopter.score >= LIFE_COST:
-            helicopter.lives += 1
+            helicopter.lives += 10
             helicopter.score -= LIFE_COST
+        if d == 2:
+            helicopter.lives -= 1
+            if helicopter.lives == 0:
+                helicopter.game_over()

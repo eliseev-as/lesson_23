@@ -9,14 +9,14 @@ from map import Map
 
 TICK_SLEEP = 0.05
 TREE_UPDATE = 50
-CLOUDS_UPDATE = 30
-FIRE_UPDATE = 100
+CLOUDS_UPDATE = 100
+FIRE_UPDATE = 75
 MAP_WIDTH, MAP_HEIGHT = 30, 30
 MOVES = {'w': (-1, 0), 'd': (0, 1), 's': (1, 0), 'a': (0, -1)}
 
-field = Map(MAP_WIDTH, MAP_HEIGHT)
-helicopter = Helicopter(MAP_WIDTH, MAP_HEIGHT)
 clouds = Clouds(MAP_WIDTH, MAP_HEIGHT)
+field = Map(MAP_WIDTH, MAP_HEIGHT, clouds)
+helicopter = Helicopter(MAP_WIDTH, MAP_HEIGHT)
 
 
 def process_key(key):
