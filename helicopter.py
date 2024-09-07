@@ -3,8 +3,9 @@ from utils import random_cell
 
 
 class Helicopter:
-    __tank = CELL_TYPES[7]
-    __score = CELL_TYPES[8]
+    __tank = CELL_TYPES[9]
+    __score = CELL_TYPES[10]
+    __lives = CELL_TYPES[11]
 
     def __init__(self, width, height):
         rc = random_cell(width, height)
@@ -16,6 +17,7 @@ class Helicopter:
         self.tank = 0
         self.max_tank = 1
         self.score = 0
+        self.lives = 2
 
     def move(self, dx, dy):
         nx, ny = dx + self.x, dy + self.y
@@ -24,4 +26,5 @@ class Helicopter:
 
     def print_stats(self):
         print(self.__tank, self.tank, '/', self.max_tank, sep='', end=' | ')
-        print(self.__score, self.score)
+        print(self.__score, self.score, end=' | ')
+        print(self.__lives, self.lives)
