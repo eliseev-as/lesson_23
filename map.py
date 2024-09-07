@@ -1,6 +1,6 @@
 from utils import random_bool, random_cell, next_random_cell, check_bounds
 
-CELL_TYPES = "🟩🌲🌊🏥🏪🔥☁️🌩️🚁🪣🏆💛🔲"
+CELL_TYPES = "🟩🌲🌊🏥🏪🔥⛅⚡🚁🪣🏆💛🔲"
 
 TREE_BONUS = 100
 UPGRADE_COST = 5000
