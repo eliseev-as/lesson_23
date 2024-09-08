@@ -1,3 +1,4 @@
+import json
 import os
 import time
 
@@ -17,21 +18,38 @@ MOVES = {'w': (-1, 0), 'd': (0, 1), 's': (1, 0), 'a': (0, -1)}
 clouds = Clouds(MAP_WIDTH, MAP_HEIGHT)
 field = Map(MAP_WIDTH, MAP_HEIGHT, clouds)
 helicopter = Helicopter(MAP_WIDTH, MAP_HEIGHT)
+tick = 1
 
 
 def process_key(key):
-    global helicopter
+    global helicopter, tick, clouds, field
     c = key.char.lower()
+
     if c in MOVES.keys():
         dx, dy = MOVES[c][0], MOVES[c][1]
         helicopter.move(dx, dy)
+    elif c == 'f':
+        data = {
+            'helicopter': helicopter.export_data(),
+            'clouds': clouds.export_data(),
+            'field': field.export_data(),
+            "tick": tick,
+        }
+        with open('level.json', 'w') as lvl:
+            json.dump(data, lvl)
+    elif c == 'g':
+        with open('level.json', 'r') as lvl:
+            data = json.load(lvl)
+            tick = data['tick'] or 1
+            helicopter.import_data(data['helicopter'])
+            field.import_data(data['field'])
+            clouds.import_data(data['clouds'])
 
 
 listener = keyboard.Listener(
     on_press=None,
     on_release=process_key, )
 listener.start()
-tick = 1
 
 while True:
     os.system('clear')

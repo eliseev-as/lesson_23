@@ -115,3 +115,11 @@ class Map():
             helicopter.lives -= 1
             if helicopter.lives == 0:
                 helicopter.game_over()
+
+    def export_data(self):
+        return {
+            'cells': self.cells,
+        }
+
+    def import_data(self, data):
+        self.cells = data['cells'] or [[0 for _ in range(self.width)] for _ in range(self.height)]

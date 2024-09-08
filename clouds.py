@@ -22,5 +22,5 @@ class Clouds:
             'cells': self.cells,
         }
 
-    def import_date(self, data):
+    def import_data(self, data):
         self.cells = data['cells'] or [[0 for _ in range(self.width)] for _ in range(self.height)]
